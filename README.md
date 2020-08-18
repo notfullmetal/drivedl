@@ -12,20 +12,14 @@ The tool requires the `'https://www.googleapis.com/auth/drive'` scope as of now.
 ```bash
 $ pip install drivedl
 ```
-
-## Pre-requisites:
-
-- Download `credentials.json` for a Desktop drive application. Instructions on how to get that can be found [here](https://developers.google.com/drive/api/v3/quickstart/python) (refer to Step 1)
-- Save the `credentials.json` file in the same directory as `drivedl.py`
-- Install the Drive API for python by running the following command:
-```bash
-$ pip install -r requirements.txt
-```
+- Enter `drivedl` in the commandline after installation and you will be asked to download a `credentials.json` and place it in a specific directory.
+- Enter `drivedl --add` in the commandline after following the previous step to add an account by signing in. (You will be redirected to a browser sign-in page)
+- Congrats! You have successfully setup drivedl! Read the usage instructions for how to then use the package
 
 ## Usage:
 
 ```bash
-$ python drivedl.py <folder_id / file_id> <path_to_save>
+$ drivedl <folder_id / file_id> <path_to_save>
 ```
 It is as straightforward as that!
 
@@ -38,7 +32,7 @@ Adding an argument `--skip` to your command will skip existing files and not red
 
 ## Assigning extra processes:
 
-Adding an argument `--proc` followed by an integer of processes to assign the application will spawn the specified processes to do the download
+Adding an argument `--proc` followed by an integer of processes to assign the application will spawn the specified processes to do the download. Default process count is 5 processes
 - Example: `--proc 10` for 10 processes
 
 ## Downloading using process map instead of an iterated map:
@@ -49,7 +43,7 @@ Adding an argument `--noiter` tells the program to download via `process.map` in
 
 Run the following command to add a new account. (Adding an account means that it will also be searched when using drivedl)
 ```bash
-$ python drivedl.py --add
+$ drivedl --add
 ```
 You will have to authorize the scope of the application for the new account as well. The token will automatically be saved for future uses once permission is granted!
 
@@ -59,21 +53,31 @@ If you add `--search` to your command, you can search for the folder name using 
 
 An example of usage is as follows:
 ```
-$ python drivedl.py "avengers endgame" --search "D:/Google Drive Downloads"
+$ drivedl "avengers endgame" --search "D:/Google Drive Downloads"
 ```
 This also works with default path configurations (stated below).
 
 ## Default Path [Optional]
 
 ```bash
-$ python drivedl.py --path <default_path>
+$ drivedl --path <default_path>
 ```
 
-This lets you specify a default path for your download location.
+This lets you specify a default path for your download location. Once a default path is set, it will use the default path to download to if no path is specified.
 
 ## Debugging:
 
 Adding `--debug` writes a log file once the entire task is completed so that any issues can be documented. This is helpful while making GitHub issues to pinpoint issues with the script.
+
+## Testing bleeding edge commits:
+
+- Download `credentials.json` for a Desktop drive application. Instructions on how to get that can be found [here](https://developers.google.com/drive/api/v3/quickstart/python) (refer to Step 1)
+- Save the `credentials.json` file in the same directory as `drivedl.py`
+- Install the Drive API for python by running the following command:
+```bash
+$ pip install -r requirements.txt
+```
+- Usage instructions would involve invoking the script via `$ python drivedl.py`
 
 ## TODO:
 
